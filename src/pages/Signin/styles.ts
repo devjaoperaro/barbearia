@@ -17,7 +17,7 @@ export const Content = styled.div`
     align-items: center;
 
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
 
     form {
         margin: 80px 0;
@@ -28,34 +28,6 @@ export const Content = styled.div`
 
         h1 {
             margin-bottom: 25px;
-        }
-
-        input {
-            background: #232129;
-            border-radius: 10px;
-            border: 1px solid #232129;
-            padding: 15px;
-            width: 100%;
-
-            & + input {
-                margin-top: 8px;
-            }
-        }
-
-        button {
-            margin-top: 24px;
-            width: 100%;
-            color: #312e38;
-            background: #FF9000;
-            border-radius: 10px;
-            height: 56px;
-            border: 0; 
-            font-weight: 500;
-            transition: background-color 0.2s;
-
-            &:hover {
-                background: ${shade(0.2, '#FF9000')};
-            }
         }
 
         a {
