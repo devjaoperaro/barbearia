@@ -18,5 +18,6 @@ export const Container = styled.div`
         &:hover {
             background: ${shade(0.2, '#FF9000')};
         }
+
     }
 `;
