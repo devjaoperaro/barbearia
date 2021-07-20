@@ -1,4 +1,4 @@
-import react, {ButtonHTMLAttributes} from 'react';
+import {ButtonHTMLAttributes} from 'react';
 
 import {Container} from './styles'; 
 

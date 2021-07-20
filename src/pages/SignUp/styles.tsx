@@ -51,12 +51,6 @@ export const Content = styled.div`
     form {
         margin: 50px 0 80px 8px;
         width: 370px;
-
-        div {
-            &:last-of-type {
-                margin-top: 20px;
-            }
-        }
     }
 
     a {
