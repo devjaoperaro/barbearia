@@ -8,7 +8,7 @@ interface TooltipProps{
 }
 
 const Tooltip: React.FC<TooltipProps> = ({title, className, children}) => {
-    //para o tooltip receber um stilo de um componente superior, deve se passar o classname
+    //para o tooltip receber um estilo de um componente superior, deve se passar o classname
     return (
         <Container className={className}>
             {children}

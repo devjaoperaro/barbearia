@@ -1,5 +1,4 @@
-import react, {useCallback, useRef} from 'react';
-import {Link} from 'react-router-dom';
+import react, {useCallback, useRef, useContext} from 'react';
 import { Container, Content, Background } from './styles';
 import { FiLogIn } from 'react-icons/fi';
 import {FiMail} from 'react-icons/fi';
@@ -9,36 +8,47 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core'; 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Logo from '../../assets/logo.svg';
-import curriedTint from 'polished/lib/color/tint';
+import AuthContext, { useAuth } from '../../context/AuthContext';
 
+interface SignInformData {
+    email: string;
+    password: string;
+}
 
 const Signin: React.FC = () => {
     const formRef = useRef<FormHandles>(null)
 
-    const handleLoginSubmit = useCallback(async (data: object) => {
+    // para utilizar um context, usa-se a funcao do arquivo authcontext q utiliza o hook useContext
+    const { user, signIn } = useAuth()
+
+    console.log(user);
+
+    const handleLoginSubmit = useCallback(async (data: SignInformData) => {
         try {
             formRef.current?.setErrors({});
 
             const schema = Yup.object().shape({
                 email: Yup.string().required('Email obrigatório').email('Digite um email válido'),
-                senha: Yup.string().required('Senha obrigatória'),
+                password: Yup.string().required('Senha obrigatória'),  
             });
 
             await schema.validate(data, { 
                 abortEarly: false
             });
 
-            console.log(data);
+            signIn({
+                email: data.email,
+                password: data.password
+            });
         } catch (error) {
             const errors = getValidationErrors(error)
 
             formRef.current?.setErrors(errors)
         }
-    }, []);
+    }, [signIn]);
 
     return (
         <Container>
@@ -56,7 +66,7 @@ const Signin: React.FC = () => {
                     </Input>
 
                     <Input 
-                        name='senha' 
+                        name='password' 
                         icon={FiLock} 
                         type='password' 
                         placeholder='Senha'
