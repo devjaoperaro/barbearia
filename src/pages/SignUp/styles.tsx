@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import {shade} from 'polished';
 
 import signupBackground from '../../assets/sign-up-background.png';
@@ -20,11 +20,32 @@ export const Background = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     
     width: 100%;
     max-width: 800px;
+    
+`;
+
+// utilizando o kyframe no styled component
+const apperFromRight = keyframes`
+    from{
+        opacity: 0;
+        transform: translateX(70px)
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px)
+    }
+`;
+
+export const AnimationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    animation: ${apperFromRight} 1s;
 
     > div {
         margin-top: 70px;
@@ -68,5 +89,7 @@ export const Content = styled.div`
             margin-right: 16px;
         }
     }
-    
 `;
+
+
+
